@@ -5,7 +5,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Library extends Db implements databaseEntity {
+public class Library  implements databaseEntity {
     public List<Author> authors = new ArrayList<>();
     public List<Book> books = new ArrayList<>();
 
@@ -13,7 +13,14 @@ public class Library extends Db implements databaseEntity {
         //makeAnAuthorWithABook();
 
         //Menu.getInstance();
-        makeAnAuthorWithABook();
+        //makeAnAuthorWithABook();
+    }
+
+    void save(Book book){
+        Serializer.write(Path.of("/database/books/"),book);
+    }
+    Object findOne(String key, String value){
+        return Db.findOne(key,value,Paths.get("/database/books/"));
     }
 
     void makeAnAuthorWithABook() {
